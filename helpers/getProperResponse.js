@@ -1,5 +1,4 @@
 module.exports = (action , name) => {
-	console.log(action);
    switch (action) {
     case "send-txt":
     	let sendText = "Hi " +name+" ! I will be your personal water trainer 🙂 you can call me Woty";

@@ -24,7 +24,6 @@ class BotController{
 		const userObj = await axios.get("https://graph.facebook.com/v2.6/"+userId+"?fields=first_name,last_name,profile_pic&access_token="+config.FB_PAGE_ACCESS_TOKEN);
 		this.userObj = userObj.data;
 		
-		//saving user in the DB
 		const user = await this.user.findUser(userId);
 		if (!user) {
 			const newUser = await this.user.newUser(userObj.data);
@@ -40,7 +39,6 @@ class BotController{
 		this.messageText = message.text;
 		const messageAttachments = message.attachments;
 		if (this.messageText) {
-		   //send message to api.ai
 		   await this.sendToApiAi();
 		} else if (messageAttachments) {
 		   this.handleMessageAttachments(messageAttachments);
@@ -165,7 +163,7 @@ class BotController{
 	}
 
 	async sendImageMessage (userId, imageUrl) {
-	  var messageData = {
+	  const messageData = {
 	    recipient: {
 	      id: userId
 	    },
@@ -200,20 +198,8 @@ class BotController{
   		await axios.post(url, messageData)
 		    .then(function (response) {
 		      if (response.status == 200) {
-		        var recipientId = response.data.recipient_id;
-		        var messageId = response.data.message_id;
-		        // if (messageId) {
-		        //   console.log(
-		        //     "Successfully sent message with id %s to recipient %s",
-		        //     messageId,
-		        //     recipientId
-		        //   );
-		        // } else {
-		        //   console.log(
-		        //     "Successfully called Send API for recipient %s",
-		        //     recipientId
-		        //   );
-		        // }
+		        const recipientId = response.data.recipient_id;
+		        const messageId = response.data.message_id;
 		      }
 		    })
 		    .catch(function (error) {
