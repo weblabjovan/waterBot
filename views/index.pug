@@ -1,0 +1,36 @@
+
+block content
+        h1 WaterBot Dashboard
+
+        h3 Change Reminders
+        p You have to fill out all inputs in this form
+        // Reminders form
+        form(method='POST' action='/reminders')
+          div
+            label(for='reminder') Change reminder text:
+            input#reminder(type='text', style={'width':'500px'} name='reminder')
+          div
+            label(for='qr1') Quick reply 1:
+            input#qr1.form-control(type='text', name='qr1')
+          div
+            label(for='qr2') Quick reply 2:
+            input#qr2.form-control(type='text', name='qr2')
+          div
+            label(for='qr3') Quick reply 3:
+            input#qr3.form-control(type='text', name='qr3')
+          div
+            label(for='qr4') Quick reply 4:
+            input#qr4.form-control(type='text', name='qr4')
+
+          button.btn.btn-primary(type='submit') Change
+
+
+          h3 Send Custom Messages
+          p You have to fill out all inputs in this form
+        // messages form
+        form(method='POST' action='/message')
+          div
+            label(for='message') Message text:
+            input#message(type='text', style={'width':'500px'} name='message')
+
+          button.btn.btn-primary(type='submit') Send
