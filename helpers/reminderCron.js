@@ -4,7 +4,7 @@ const UserController = require('../controllers/UserController');
 const ReminderController = require('../controllers/ReminderController');
 
 module.exports = new cron.CronJob({
-	 cronTime: '0 */6 * * *',
+	 cronTime: '0 */5 * * *',
 	 onTick: async function() {
 	    const Bot = new BotController();
 	    const User = new UserController();
@@ -18,13 +18,13 @@ module.exports = new cron.CronJob({
 	    	let range = 0;
 			let message = "";
 
-	    	if (d.getHours() > 5 && d.getHours() < 12) {
+	    	if (d.getHours() > 5 && d.getHours() < 11) {
 				message = 'Good morning '+user.userFirst+' time for your morning drink';
 				range = 2;
-	    	}else if(d.getHours() > 11 && d.getHours() < 18) {
+	    	}else if(d.getHours() > 10 && d.getHours() < 16) {
 				message = 'Good day '+user.userFirst+' time for your mid day drink';
 				range = 1;
-	    	}else if(d.getHours() > 17 && d.getHours() < 23){
+	    	}else if(d.getHours() > 15 && d.getHours() < 22){
 				message = 'Good evening '+user.userFirst+' time for your evening drink';
 				range = 3;
 	    	}
