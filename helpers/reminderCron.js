@@ -21,22 +21,22 @@ module.exports = new cron.CronJob({
 	    	if (d.getHours() > 5 && d.getHours() < 11) {
 				message = 'Good morning '+user.userFirst+' time for your morning drink';
 				range = 2;
-	    	}else if(d.getHours() > 10 && d.getHours() < 16) {
+	    	}else if(d.getHours() > 10 && d.getHours() < 17) {
 				message = 'Good day '+user.userFirst+' time for your mid day drink';
 				range = 1;
-	    	}else if(d.getHours() > 15 && d.getHours() < 22){
+	    	}else if(d.getHours() > 16 && d.getHours() < 22){
 				message = 'Good evening '+user.userFirst+' time for your evening drink';
 				range = 3;
 	    	}
 
-			if (range <= user.rate) {
-				await Bot.sendImageMessage(user.userId, photoUrl);
+			if (rage != 0 && range <= user.rate) {
 				if (latest) {
+					await Bot.sendImageMessage(user.userId, photoUrl);
 					await Bot.sendQuickReply(user.userId, latest.text, latest.replies);
-				}else{
+				}else if(message) {
+					await Bot.sendImageMessage(user.userId, photoUrl);
 					await Bot.sendTextMessage(user.userId, message);
 				}
-				
 			};
 	    	
 	    });
